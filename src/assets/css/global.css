@@ -1,0 +1,236 @@
+:root {
+  --header-height: 80px;
+  --footer-height: 60px;
+  --card-hover-elevate: 5px;
+  --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+/* 为所有详情页容器添加统一padding */
+.detail-container {
+  flex: 1; /* 占据剩余空间 */
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0; /* 调整内边距 */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.project-detail-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 确保至少占满整个视口 */
+}
+
+/************** 全局section间距 ***************/
+section {
+  padding: 2rem 0;
+}
+
+/* 全局标题样式 */
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #007bff;
+}
+
+/* 全局描述文本样式 */
+.section-summary {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 1.2rem;
+  /* max-width: 800px; */
+  margin-left: auto;
+  margin-right: auto;
+}
+section[class*='py-'] {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/******************** 全局按钮样式 *******************/
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+.btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  transform: translateY(-2px);
+}
+
+/***************** 全局卡片样式 *********/
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden; /* 防止内容溢出 */
+}
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 内容区域高度控制 */
+.card-body {
+  flex: 1; /* 自动填充剩余空间 [6,8](@ref) */
+  display: flex;
+  flex-direction: column;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.1rem;
+}
+/* 文本区域高度处理 */
+.card-text {
+  flex-grow: 1; /* 自动撑满剩余高度 [6](@ref) */
+  min-height: 4em; /* 设置最小行高基准值 [5](@ref) */
+  color: #6c757d;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  z-index: 2; /* 确保悬停卡片在上层 */
+}
+/* 统一悬停显示完整内容 */
+.card:hover .card-title,
+.card:hover .card-text {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  background: white;
+}
+/* 标题单行省略 */
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 描述两行省略 */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3em;
+}
+
+.card:hover .hover-reveal {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  -webkit-line-clamp: unset;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+/* 背景色调整 */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* 基础偏移保证即时跳转,实现点击link时不被header遮挡 */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* 返回按钮 */
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.back-button:hover {
+  background-color: #f5f5f5;
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 占位元素保持对称 */
+.button-placeholder {
+  width: 40px; /* 与按钮同宽 */
+  flex-shrink: 0;
+}
+
+/** 全局project筛选按 **/
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/**************** about详情页 card样式 ************/
+/* 右侧内容卡片样式 */
+.card-about {
+  border-radius: 0.5rem;
+  border: none;
+  margin-bottom: 0rem;
+}
+
+.card-about-body {
+  padding: 1rem 1.25rem;
+}
+
+.card-about-title {
+  position: relative;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-about-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #0d6efd;
+}
